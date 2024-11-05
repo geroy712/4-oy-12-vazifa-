@@ -1,0 +1,68 @@
+
+# Initial Setup and Commits
+mkdir FN27_project
+cd FN27_project
+git init
+
+echo "Birinchi o'zgartirish" > info.txt
+git add info.txt
+git commit -m "Birinchi commit"
+
+echo "Ikkinchi o'zgartirish" >> info.txt
+git add info.txt
+git commit -m "Ikkinchi commit"
+
+echo "Uchinchi o'zgartirish" >> info.txt
+git add info.txt
+git commit -m "Uchinchi commit"
+
+# Branch Commands
+git branch branch1
+git branch branch2
+git branch branch3
+git branch branch4
+git branch branch5
+git branch branch6
+
+git branch -d branch4
+git branch -d branch5
+git branch -d branch6
+
+# Switching Branches
+git checkout branch1
+
+# GitHub Repositories
+git remote add origin <repository_url>
+git push -u origin master
+
+# Python Program for User Data Collection
+import re
+
+user_id = 1
+
+while True:
+    name = input("Ismingizni kiriting: ")
+    lastname = input("Familiyangizni kiriting: ")
+    age = input("Yoshingizni kiriting: ")
+    phone = input("Telefon raqamingizni kiriting (+998...): ")
+    email = input("Emailingizni kiriting: ")
+    address = input("Manzilingizni kiriting: ")
+    
+    if not age.isdigit():
+        print("Yoshni to'g'ri kiriting (faqat son bo'lishi kerak).")
+        continue
+    age = int(age)
+    
+    if not re.match(r"^\+998\d{9}$", phone):
+        print("Telefon raqamni to'g'ri kiriting (+998 bilan boshlansin va 12 ta raqam bo'lsin).")
+        continue
+    
+    with open("users_info.txt", "a") as file:
+        file.write(f"ID: {user_id}, Ism: {name}, Familiya: {lastname}, Yosh: {age}, Telefon: {phone}, Email: {email}, Manzil: {address}\n")
+    
+    user_id += 1
+
+# Pushing Changes
+git add users_info.txt
+git commit -m "Foydalanuvchi ma'lumotlarini yozish dasturi"
+git push origin master
